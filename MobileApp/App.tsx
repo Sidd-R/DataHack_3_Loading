@@ -27,7 +27,7 @@ import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import * as eva from '@eva-design/eva';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import AppNavigationScreen from './Screens/AppNavigationScreen';
+import { AppNavigator } from './Screens/AppNavigationScreen';
 import LoginScreen from './Screens/LoginScreen';
 
 /**
@@ -50,9 +50,9 @@ export default (): React.ReactElement => (
     <IconRegistry icons={EvaIconsPack}/>
     <ApplicationProvider {...eva} theme={eva.light}>
       <NavigationContainer>
-        <AuthStackNavigator.Navigator>
-          <AuthStackNavigator.Screen name="LOGIN" component={LoginScreen} />
-          <AuthStackNavigator.Screen name="APP" component={AppNavigationScreen} />
+        <AuthStackNavigator.Navigator >
+          <AuthStackNavigator.Screen name="LOGIN" component={LoginScreen} options={{headerShown:false}}/>
+          <AuthStackNavigator.Screen name="APP" component={AppNavigator} options={{headerShown:false}}/>
         </AuthStackNavigator.Navigator>
       </NavigationContainer>
     </ApplicationProvider>
@@ -71,4 +71,7 @@ const styles = StyleSheet.create({
   likeButton: {
     marginVertical: 16,
   },
+  background: {
+
+  }
 });
