@@ -23,20 +23,20 @@ const PersonIcon = (props: any): IconElement => (
 const BellIcon = (props: any): IconElement => (
   <Icon
     {...props}
-    name='bell-outline'
+    name='plus-square-outline'
   />
 );
 
 const EmailIcon = (props: any): IconElement => (
   <Icon
     {...props}
-    name='email-outline'
+    name='activity-outline'
   />
 );
 
 
 const BottomTabBar = ({ navigation, state}: BottomTabBarProps) => (
-  <BottomNavigation style={{}}
+  <BottomNavigation 
     selectedIndex={state.index}
     onSelect={index => navigation.navigate(state.routeNames[index])}>
     <BottomNavigationTab title='HOME' icon={PersonIcon}/>

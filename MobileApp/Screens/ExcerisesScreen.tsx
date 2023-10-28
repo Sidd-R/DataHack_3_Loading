@@ -1,55 +1,55 @@
-import {View, Text, StyleSheet, ScrollView, Image} from 'react-native';
+import {View, StyleSheet, ScrollView, Image} from 'react-native';
 import React from 'react';
-import {Layout, Button} from '@ui-kitten/components';
+import {Layout, Button, Text} from '@ui-kitten/components';
 
 const ExcerisesScreen = () => {
   return (
     <ScrollView>
-      <Layout style={styles.exercisesScreen}>
-        <Layout style={styles.exceriseCard}>
-          <Layout style={{backgroundColor: '#0F67FE', width:'50%'}}>
+      <Layout style={styles.exercisesScreen} level='1'>
+        <Layout level='2' style={styles.exceriseCard}>
+          <Layout level='2' style={{width:'50%'}}>
             <Text style={styles.text}>Bicep Curl</Text>
-            <Button style={styles.button} status="success">
+            <Button style={styles.button}>
               <Text style={styles.text}>START</Text>
             </Button>
           </Layout>
           <Image style={styles.image} source={require('../images/bicep_curl.jpg')} /> 
         </Layout>
-        <Layout style={styles.exceriseCard}>
-          <Layout style={{backgroundColor: '#0F67FE', width:'50%'}}>
-            <Text style={styles.text}>Bicep Curl</Text>
-            <Button style={styles.button} status="success">
+        <Layout level='2' style={styles.exceriseCard}>
+          <Layout level='2' style={{width:'50%'}}>
+            <Text style={styles.text}>Squats</Text>
+            <Button style={styles.button}>
               <Text style={styles.text}>START</Text>
             </Button>
           </Layout>
-          <Image style={styles.image} source={require('../images/bicep_curl.jpg')} /> 
+          <Image style={styles.image} source={require('../images/squats.jpg')} /> 
         </Layout>
-        <Layout style={styles.exceriseCard}>
-          <Layout style={{backgroundColor: '#0F67FE', width:'50%'}}>
-            <Text style={styles.text}>Bicep Curl</Text>
-            <Button style={styles.button} status="success">
+        <Layout level='2' style={styles.exceriseCard}>
+          <Layout level='2' style={{width:'50%'}}>
+            <Text style={styles.text}>Push-Ups</Text>
+            <Button style={styles.button}>
               <Text style={styles.text}>START</Text>
             </Button>
           </Layout>
-          <Image style={styles.image} source={require('../images/bicep_curl.jpg')} /> 
+          <Image style={styles.image} source={require('../images/push-ups.jpg')} /> 
         </Layout>
-        <Layout style={styles.exceriseCard}>
-          <Layout style={{backgroundColor: '#0F67FE', width:'50%'}}>
-            <Text style={styles.text}>Bicep Curl</Text>
-            <Button style={styles.button} status="success">
+        <Layout level='2' style={styles.exceriseCard}>
+          <Layout level='2' style={{width:'50%'}}>
+            <Text style={styles.text}>Shoulder Press</Text>
+            <Button style={styles.button}>
               <Text style={styles.text}>START</Text>
             </Button>
           </Layout>
-          <Image style={styles.image} source={require('../images/bicep_curl.jpg')} /> 
+          <Image style={styles.image} source={require('../images/shoulder-press.jpg')} /> 
         </Layout>
-        <Layout style={styles.exceriseCard}>
-          <Layout style={{backgroundColor: '#0F67FE', width:'50%'}}>
-            <Text style={styles.text}>Bicep Curl</Text>
-            <Button style={styles.button} status="success">
+        <Layout level='2' style={styles.exceriseCard}>
+          <Layout level='2' style={{width:'50%'}}>
+            <Text style={styles.text}>Lunges</Text>
+            <Button style={styles.button}>
               <Text style={styles.text}>START</Text>
             </Button>
           </Layout>
-          <Image style={styles.image} source={require('../images/bicep_curl.jpg')} /> 
+          <Image style={styles.image} source={require('../images/lunges.jpg')} /> 
         </Layout>
       </Layout>
     </ScrollView>
@@ -76,17 +76,16 @@ const styles = StyleSheet.create({
   exceriseCard: {
     borderRadius: 12,
     padding: 12,
-    backgroundColor: '#0F67FE',
     width: '100%',
     marginBottom: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    elevation: 5,
   },
   text: {
-    fontSize: 24,
+    fontSize: 20,
     marginBottom: 10,
     fontWeight: '900',
-    color: '#fff',
   },
   button: {
     marginTop: 10,
