@@ -25,6 +25,28 @@ const HomeScreen = () => {
     {date: '2023-10-30', count: 4},
   ];
 
+  const calculateBMI = () => {
+    if (height && weight) {
+      const heightInMeters = parseInt(height) / 100;
+      const bmi = parseInt(weight) / (heightInMeters * heightInMeters);
+      return bmi.toFixed(2);
+    }
+    return null;
+  };
+
+  const getBMICategory = (bmi: number) => {
+    if (bmi) {
+      if (bmi < 18.5) return 'Underweight';
+      else if (bmi >= 18.5 && bmi < 24.9) return 'Normal Weight';
+      else if (bmi >= 25 && bmi < 29.9) return 'Overweight';
+      else return 'Obese';
+    }
+    return 'N/A';
+  };
+
+  const bmi = calculateBMI();
+  const bmiCategory = getBMICategory(parseFloat(bmi));
+
   const chartConfig = {
     backgroundGradientFrom: '#fff',
     backgroundGradientTo: '#fff',
@@ -69,6 +91,8 @@ const HomeScreen = () => {
           <Text style={styles.infoText}>Weight: {weight} kg</Text>
           <Text style={styles.infoText}>Age: {age}</Text>
           <Text style={styles.infoText}>Gender: {gender}</Text>
+          <Text style={styles.infoText}>BMI: {bmi}</Text>
+          <Text style={styles.infoText}>BMI Category: {bmiCategory}</Text>
         </Layout>
         <ContributionGraph
           values={commitsData}
