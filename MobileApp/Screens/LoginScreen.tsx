@@ -12,7 +12,7 @@ const LoginScreen = ({navigation}:Props) => {
   const [password, setPassword] = React.useState('');
   return (
     <Layout style={styles.container}>
-      <InputText />
+      <InputText label='Username' placeholder='Enter your name'/>
       <InputPassword />
       <Button style={styles.button} onPress={() => navigation.replace('APP')}>Sign In</Button>
     </Layout>
@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
     paddingRight: 24,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#F2F5F9',
   },
   button: {
     borderRadius: 12,

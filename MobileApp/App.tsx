@@ -11,10 +11,7 @@
  */
 
 import React from 'react';
-import {
-  ImageProps,
-  StyleSheet,
-} from 'react-native';
+import {ImageProps, StyleSheet, useColorScheme} from 'react-native';
 import {
   ApplicationProvider,
   Button,
@@ -23,41 +20,52 @@ import {
   Layout,
   Text,
 } from '@ui-kitten/components';
-import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import {EvaIconsPack} from '@ui-kitten/eva-icons';
 import * as eva from '@eva-design/eva';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { AppNavigator } from './Screens/AppNavigationScreen';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {AppNavigator} from './Screens/AppNavigationScreen';
 import LoginScreen from './Screens/LoginScreen';
 
 /**
  * Use any valid `name` property from eva icons (e.g `github`, or `heart-outline`)
  * https://akveo.github.io/eva-icons
  */
-const HeartIcon = (props?: Partial<ImageProps>): React.ReactElement<ImageProps> => (
-  <Icon {...props} name='heart'/>
-);
+const HeartIcon = (
+  props?: Partial<ImageProps>,
+): React.ReactElement<ImageProps> => <Icon {...props} name="heart" />;
 
 export type AuthStackParamList = {
   LOGIN: undefined;
   APP: undefined;
-}
+};
 
 const AuthStackNavigator = createNativeStackNavigator<AuthStackParamList>();
 
-export default (): React.ReactElement => (
-  <>
-    <IconRegistry icons={EvaIconsPack}/>
-    <ApplicationProvider {...eva} theme={eva.light}>
-      <NavigationContainer>
-        <AuthStackNavigator.Navigator >
-          <AuthStackNavigator.Screen name="LOGIN" component={LoginScreen} options={{headerShown:false}}/>
-          <AuthStackNavigator.Screen name="APP" component={AppNavigator} options={{headerShown:false}}/>
-        </AuthStackNavigator.Navigator>
-      </NavigationContainer>
-    </ApplicationProvider>
-  </>
-);
+export default (): React.ReactElement => {
+  const colorScheme = useColorScheme();
+  return (
+    <>
+      <IconRegistry icons={EvaIconsPack} />
+      <ApplicationProvider {...eva} theme={eva.light}>
+        <NavigationContainer>
+          <AuthStackNavigator.Navigator>
+            <AuthStackNavigator.Screen
+              name="LOGIN"
+              component={LoginScreen}
+              options={{headerShown: false}}
+            />
+            <AuthStackNavigator.Screen
+              name="APP"
+              component={AppNavigator}
+              options={{headerShown: false}}
+            />
+          </AuthStackNavigator.Navigator>
+        </NavigationContainer>
+      </ApplicationProvider>
+    </>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -71,7 +79,5 @@ const styles = StyleSheet.create({
   likeButton: {
     marginVertical: 16,
   },
-  background: {
-
-  }
+  background: {},
 });

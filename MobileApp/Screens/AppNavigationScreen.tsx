@@ -3,6 +3,9 @@ import { StyleSheet } from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { BottomNavigation, BottomNavigationProps,  Icon, IconElement, BottomNavigationTab, Layout, Text } from '@ui-kitten/components';
+import HomeScreen from './HomeScreen';
+import DietScreen from './DietScreen';
+import ExcerisesScreen from './ExcerisesScreen';
 const { Navigator, Screen } = createBottomTabNavigator();
 
 type BottomTabBarProps = BottomNavigationProps & {
@@ -31,31 +34,22 @@ const EmailIcon = (props: any): IconElement => (
   />
 );
 
-const UsersScreen = () => (
-  <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-    <Text category='h1'>USERS</Text>
-  </Layout>
-);
-
-const OrdersScreen = () => (
-  <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-    <Text category='h1'>ORDERS</Text>
-  </Layout>
-);
 
 const BottomTabBar = ({ navigation, state}: BottomTabBarProps) => (
-  <BottomNavigation
+  <BottomNavigation style={{}}
     selectedIndex={state.index}
     onSelect={index => navigation.navigate(state.routeNames[index])}>
-    <BottomNavigationTab title='USERS' icon={PersonIcon}/>
-    <BottomNavigationTab title='ORDERS' icon={BellIcon}/>
+    <BottomNavigationTab title='HOME' icon={PersonIcon}/>
+    <BottomNavigationTab title='DIET' icon={BellIcon}/>
+    <BottomNavigationTab title='EXCERISES' icon={EmailIcon}/>
   </BottomNavigation>
 );
 
 const TabNavigator = () => (
   <Navigator tabBar={props => <BottomTabBar {...props} />}>
-    <Screen name='Users' component={UsersScreen}/>
-    <Screen name='Orders' component={OrdersScreen}/>
+    <Screen name='Users' component={HomeScreen} options={{headerShown:false}}/>
+    <Screen name='Orders' component={DietScreen} options={{headerShown:false}}/>
+    <Screen name='Excerises' component={ExcerisesScreen} options={{headerShown:false}}/>
   </Navigator>
 );
 

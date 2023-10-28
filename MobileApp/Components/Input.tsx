@@ -2,6 +2,13 @@ import React from 'react';
 import { TouchableWithoutFeedback, StyleSheet, View } from 'react-native';
 import { Icon, IconElement, Input, Text } from '@ui-kitten/components';
 
+type InputTextProps = {
+  label: string;
+  placeholder: string;
+  changeFunction: (param:any) => void;
+  variable: string;
+};
+
 const AlertIcon = (props: any): IconElement => (
   <Icon
     {...props}
@@ -41,32 +48,14 @@ export const InputPassword = (): React.ReactElement => {
   );
 };
 
-export const InputText = (): React.ReactElement => {
-
-    const [value, setValue] = React.useState('');
-    const [secureTextEntry, setSecureTextEntry] = React.useState(true);
-  
-    const toggleSecureEntry = (): void => {
-      setSecureTextEntry(!secureTextEntry);
-    };
-  
-    const renderIcon = (props: any): React.ReactElement => (
-      <TouchableWithoutFeedback onPress={toggleSecureEntry}>
-        <Icon
-          {...props}
-          name={secureTextEntry ? 'eye-off' : 'eye'}
-        />
-      </TouchableWithoutFeedback>
-    );
-  
-  
+export const InputText = ({label, placeholder, changeFunction, variable}:InputTextProps): React.ReactElement => {
     return (
       <Input
-        value={value}
-        label='Username'
-        placeholder='Enter your name'
+        value={variable}
+        label={label}
+        placeholder={placeholder}
         style={styles.inputStyle}
-        onChangeText={nextValue => setValue(nextValue)}
+        onChangeText={nextValue => changeFunction(nextValue)}
       />
     );
   };
