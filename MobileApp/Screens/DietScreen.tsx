@@ -1,5 +1,5 @@
 import {ScrollView, StyleSheet, Dimensions} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Button, Layout, Text} from '@ui-kitten/components';
 import {InputText} from '../Components/Input';
 import {PieChart, LineChart} from 'react-native-chart-kit';
@@ -23,22 +23,24 @@ const DietScreen = () => {
 
     try {
       const response = await axios.request(options).then(data => data.data);
-      console.log(response);
       setNutrition(response.items);
       console.log(nutrition);
-      const totalCalories = response.items.reduce(
-        (total, item) => total + item.calories,
-        0,
-      );
-      setCaloriesData(prevData => {
-        const newData = [...prevData];
-        newData[newData.length - 1] = totalCalories;
-        return newData;
-      });
     } catch (error) {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    const totalCalories = nutrition.reduce(
+      (total, item) => total + item.calories,
+      0,
+    );
+    setCaloriesData(prevData => {
+      const newData = [...prevData];
+      newData[newData.length - 1] += totalCalories;
+      return newData;
+    });
+  }, [nutrition]);
 
   return (
     <Layout style={{flex: 1}}>

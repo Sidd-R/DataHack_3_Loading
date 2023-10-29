@@ -82,9 +82,9 @@ const HomeScreen = () => {
   }, []);
 
   return (
-    <Layout style={styles.container}>
-      <ScrollView style={styles.container}>
-        <Layout style={styles.layout}>
+    <Layout style={styles.container} level='1'>
+      <ScrollView style={{flex: 1}}>
+        <Layout style={styles.content} level='3'>
           <Text style={styles.welcomeText}>Welcome, {fullName}</Text>
           <Text style={styles.infoText}>Username: {username}</Text>
           <Text style={styles.infoText}>Height: {height} cm</Text>
@@ -94,6 +94,7 @@ const HomeScreen = () => {
           <Text style={styles.infoText}>BMI: {bmi}</Text>
           <Text style={styles.infoText}>BMI Category: {bmiCategory}</Text>
         </Layout>
+        <Text style={{textAlign: 'center'}} category='h5'>Recent Activity</Text>
         <ContributionGraph
           values={commitsData}
           endDate={new Date('2023-10-29')}
@@ -110,10 +111,7 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  layout: {
-    padding: 16,
-    flex: 1,
+    padding: 20,
   },
   welcomeText: {
     fontSize: 24,
@@ -124,6 +122,14 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 8,
   },
+  content: {
+    flex: 1,
+    borderRadius: 12,
+    padding: 10,
+    elevation: 5,
+    margin: 5,
+    marginBottom: 20,
+  }
 });
 
 export default HomeScreen;

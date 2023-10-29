@@ -1,10 +1,91 @@
 import {View, StyleSheet, ScrollView, Image} from 'react-native';
-import React from 'react';
-import {Layout, Button, Text} from '@ui-kitten/components';
+import React, { useState } from 'react';
+import {Layout, Button, Text, Select, SelectItem} from '@ui-kitten/components';
+import axios from 'axios';
 
 const ExcerisesScreen = () => {
+  const [selectedType, setSelectedType] = useState('');
+  const [selectedBodyPart, setSelectedBodyPart] = useState('');
+  const [selectedEquipment, setSelectedEquipment] = useState('');
+  const [selectedLevel, setSelectedLevel] = useState('');
+
+  const typeOptions = ['Strength', 'Stretching'];
+  const bodyPartOptions = ['Bicep','Chest'];
+  const equipmentOptions = ['Body Only','Dumbbell'];
+  const levelOptions = ['Beginner', 'Intermediate', 'Advanced'];
+
+  const handleSearchRequest =async () => {
+    const options = {
+      method: 'POST',
+      url: 'http://127.0.0.1:80',
+      data: {
+        type: selectedType,
+        bodyPart: selectedBodyPart,
+        equipment: selectedEquipment,
+        level: selectedLevel,
+      }
+    };
+
+    try {
+      const response = await axios.request(options).then(data => data.data);
+      console.log(response)
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <ScrollView>
+      <Layout style={{flex: 1, alignItems: 'center'}}>
+        <Text category="h5" style={{marginBottom: 10}}>
+          Search Excerises
+        </Text>
+        <Layout>
+        <Select
+          style={styles.dropdowns}
+          placeholder="Select Type"
+          value={selectedType}
+          onSelect={index => setSelectedType(typeOptions[index.row])}>
+          {typeOptions.map((type, index) => (
+            <SelectItem title={type} key={index} />
+          ))}
+        </Select>
+
+        <Select
+          style={styles.dropdowns}
+          placeholder="Select Body Part"
+          value={selectedBodyPart}
+          onSelect={index => setSelectedBodyPart(bodyPartOptions[index.row])}>
+          {bodyPartOptions.map((bodyPart, index) => (
+            <SelectItem title={bodyPart} key={index} />
+          ))}
+        </Select>
+
+        <Select
+          style={styles.dropdowns}
+          placeholder="Select Equipment"
+          value={selectedEquipment}
+          onSelect={index => setSelectedEquipment(equipmentOptions[index.row])}>
+          {equipmentOptions.map((equipment, index) => (
+            <SelectItem title={equipment} key={index} />
+          ))}
+        </Select>
+
+        <Select
+          style={styles.dropdowns}
+          placeholder="Select Level"
+          value={selectedLevel}
+          onSelect={index => setSelectedLevel(levelOptions[index.row])}>
+          {levelOptions.map((level, index) => (
+            <SelectItem title={level} key={index} />
+          ))}
+        </Select>
+
+        <Button style={{width: 330, margin: 16}} onPress={handleSearchRequest}>
+          <Text style={styles.text}>SEARCH</Text>
+        </Button>
+      </Layout>
+      </Layout>
       <Layout style={styles.exercisesScreen} level='1'>
         <Layout level='2' style={styles.exceriseCard}>
           <Layout level='2' style={{width:'50%'}}>
@@ -93,5 +174,9 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     color: '#fff',
     width: '80%',
+  },
+  dropdowns: {
+    margin: 16,
+    width: 330,
   },
 });
